@@ -6,4 +6,4 @@ function connectToDb() {
     }).catch(err => console.log(err));
 }
 
-module.exports = connectToDb;
+module.exports = connectToDb; 
