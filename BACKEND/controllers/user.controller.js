@@ -33,12 +33,13 @@ module.exports.loginUser = async (req, res, next) => {
   const {email, password} = req.body;
 
   try {
-    const user = await userService.findOne({ email }).select('+password').exec();
+    const user = await userService.findOne({ email }).select('+password');
+    
     if(!user){
       return res.status(401).json({message: 'Invalid Email or Password'});
     }
   
-    const isMatch = await userModel.comparePassword(password, user.password);
+    const isMatch = await user.comparePassword(password);
     if(!isMatch){
       return res.status(401).json({message: 'Invalid Email or Password'});
     }
@@ -46,6 +47,6 @@ module.exports.loginUser = async (req, res, next) => {
     const token = user.generateAuthToken();
     res.status(200).json({token, user});
   } catch (error) {
-    return res.status(500).json({message: 'Server Error'});
+    return res.status(500).json({message: 'Server Error', error: error.message});
   }
 }

@@ -20,6 +20,6 @@ module.exports.createUser =  async ({
     return user;
 }
 
-module.exports.findOne = async (filter) => {
-    return await userModel.findOne(filter).select("+password");
+module.exports.findOne = (filter) => {
+    return userModel.findOne(filter).select("+password"); // ✅ Fixed
 };
