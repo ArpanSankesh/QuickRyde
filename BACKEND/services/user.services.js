@@ -21,5 +21,5 @@ module.exports.createUser =  async ({
 }
 
 module.exports.findOne = async (filter) => {
-    return await userModel.findOne(filter);
+    return await userModel.findOne(filter).select("+password");
 };
