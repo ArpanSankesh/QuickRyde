@@ -18,5 +18,70 @@ QuickRyde is a modern ride-hailing web application built with the MERN stack. It
 - **Authentication:** JWT  
 
 ## 📌 Getting Started  
-Clone the repository and follow the setup instructions to run QuickRyde locally.  
+Clone the repository and follow the setup instructions to run QuickRyde locally.
+
+## 📚 API Documentation
+
+### User Endpoints
+
+#### POST /user/register
+Registers a new user.
+
+**Request Body:**
+```json
+{
+  "fullName": {
+    "firstName": "John",
+    "lastName": "Doe"
+  },
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+```
+
+**Response:**
+```json
+{
+  "token": "jwt_token",
+  "user": {
+    "_id": "user_id",
+    "fullName": {
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    "email": "john.doe@example.com"
+  }
+}
+```
+
+#### POST /user/login
+Logs in an existing user.
+
+**Request Body:**
+```json
+{
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+```
+
+**Response:**
+```json
+{
+  "token": "jwt_token",
+  "user": {
+    "_id": "user_id",
+    "fullName": {
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    "email": "john.doe@example.com"
+  }
+}
+```
+
+**Error Responses:**
+- `400 Bad Request`: Validation errors.
+- `401 Unauthorized`: Invalid email or password.
+- `500 Internal Server Error`: Server error.
 
